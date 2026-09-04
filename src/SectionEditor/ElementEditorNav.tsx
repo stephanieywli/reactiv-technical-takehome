@@ -8,7 +8,7 @@ import { IconButtonBlock } from "../IconButtonBlock";
 
 export const SectionEditorNav = () => {
   return (
-    <nav className="bg-white flex flex-col fixed right-0 top-0 gap-2 h-screen border-l-2 border-brand-gray-50 w-xs pt-15 p-3">
+    <nav className="bg-white flex flex-col fixed right-0 top-0 gap-2 h-screen border-l-2 border-brand-gray-50 w-sm pt-15 p-3">
       <div className="flex flex-row gap-1.5 items-center">
         <IconAdjustmentsHorizontal
           size={25}
