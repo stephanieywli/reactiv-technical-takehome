@@ -1,5 +1,5 @@
 import { IconLayoutGrid, IconChevronUp } from "@tabler/icons-react";
-import { NavHeader } from "../NavHeader";
+import { NavHeader } from "../components/NavHeader";
 import { ScreenLayoutBody } from "./ScreenLayoutBody";
 import { useSections } from "../contexts/SectionsContext";
 import { useSelection } from "../contexts/SectionSelectionContext";

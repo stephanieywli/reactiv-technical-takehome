@@ -4,11 +4,11 @@ import {
   IconFileImport,
   IconFileExport,
 } from "@tabler/icons-react";
-import { Logo } from "./assets/Logo";
+import { Logo } from "./components/Logo";
 import { useSections } from "./contexts/SectionsContext";
 import { useToast } from "./contexts/ToastContext";
 import { exportJson, importJson } from "./lib/jsonTransfer";
-import { SaveFeedbackPill } from "./SaveFeedbackPill";
+import { SaveFeedbackPill } from "./components/SaveFeedbackPill";
 
 export const SiteNav = () => {
   const { sections, importSections } = useSections();

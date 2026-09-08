@@ -3,7 +3,7 @@ import {
   IconChevronDown,
   IconChevronLeft,
 } from "@tabler/icons-react";
-import { NavHeader } from "../NavHeader";
+import { NavHeader } from "../components/NavHeader";
 import { SectionEditorBody } from "./SectionEditorBody";
 import { useSelection } from "../contexts/SectionSelectionContext";
 import { useSections } from "../contexts/SectionsContext";

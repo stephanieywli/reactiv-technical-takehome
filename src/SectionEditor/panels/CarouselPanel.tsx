@@ -7,7 +7,7 @@ import {
   IconTrash,
   IconPlus,
 } from "@tabler/icons-react";
-import { IconButtonBlock } from "../../IconButtonBlock";
+import { IconButtonBlock } from "../../components/IconButtonBlock";
 import { isValidUrl, normalizeUrl } from "../../lib/isValidUrl";
 import { checkImageLoads } from "../../lib/checkImageLoads";
 import { useSaveFeedback } from "../../contexts/SaveFeedbackContext";

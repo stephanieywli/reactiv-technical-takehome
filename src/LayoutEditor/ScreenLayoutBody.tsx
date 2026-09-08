@@ -4,7 +4,7 @@ import {
   IconRectangle,
   IconArrowsSort,
 } from "@tabler/icons-react";
-import { IconButtonBlock } from "../IconButtonBlock";
+import { IconButtonBlock } from "../components/IconButtonBlock";
 import { SectionListItem } from "./SectionListItem";
 import type { Section } from "../types";
 
