@@ -8,7 +8,7 @@ import {
   IconPlus,
 } from "@tabler/icons-react";
 import { IconButtonBlock } from "../../IconButtonBlock";
-import { isValidUrl } from "../../lib/isValidUrl";
+import { isValidUrl, normalizeUrl } from "../../lib/isValidUrl";
 import { checkImageLoads } from "../../lib/checkImageLoads";
 import { useSaveFeedback } from "../../Toast/SaveFeedbackContext";
 import type { CarouselAspect, CarouselSection } from "../../types";
@@ -28,15 +28,17 @@ export const CarouselPanel = ({
   // Add new img to carousel
   const addImage = async () => {
     // validate url by syntax and img load
-    const url = newUrl.trim();
-    if (!url || validating) return;
+    const trimmed = newUrl.trim();
+    if (!trimmed || validating) return;
 
-    if (!isValidUrl(url)) {
+    if (!isValidUrl(trimmed)) {
       setUrlError(
         "Invalid link — please enter a valid URL (e.g. https://example.com/photo.jpg)",
       );
       return;
     }
+
+    const url = normalizeUrl(trimmed);
 
     setValidating(true);
     const loads = await checkImageLoads(url);

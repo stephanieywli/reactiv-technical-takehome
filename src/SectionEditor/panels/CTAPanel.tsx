@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { isValidUrl } from "../../lib/isValidUrl";
+import { isValidUrl, normalizeUrl } from "../../lib/isValidUrl";
 import { useSaveFeedback } from "../../Toast/SaveFeedbackContext";
 import { ColourInput } from "../ColourInput";
 import { LabeledTextInput } from "../LabeledTextInput";
@@ -23,7 +23,7 @@ export const CTAPanel = ({
         ? "Invalid link — please enter a valid URL (e.g. https://example.com/photo.jpg)"
         : null,
     );
-    // Save change if link is valid
+    if (!invalid && trimmed) onUpdate({ link: normalizeUrl(trimmed) });
     if (!invalid) triggerSaving();
   };
 
