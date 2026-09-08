@@ -1,5 +1,5 @@
 // Tracks which section is currently selected/hovered for UI state
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useContext, useMemo, useState } from "react";
 import type { ReactNode } from "react";
 import { useSections } from "./SectionsContext";
 import type { Section } from "../types";
@@ -34,12 +34,14 @@ export const SelectionProvider = ({ children }: { children: ReactNode }) => {
     [sections, selectedId],
   );
 
-  // If the selected section DNE in sections array, clear selection
-  useEffect(() => {
-    if (selectedId && !sections.find((s) => s.id === selectedId)) {
+  // if the selected section DNE in sections array (compare using state), clear selection
+  const [prevSections, setPrevSections] = useState(sections);
+  if (sections !== prevSections) {
+    setPrevSections(sections);
+    if (selectedId && !sections.some((s) => s.id === selectedId)) {
       setSelectedId(null);
     }
-  }, [sections, selectedId]);
+  }
 
   // select a section; if the section is already selected, deselect it
   // expand the section editor nav for mobile
@@ -71,6 +73,7 @@ export const SelectionProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useSelection = () => {
   const ctx = useContext(SelectionContext);
   if (!ctx) {
