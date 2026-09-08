@@ -1,7 +1,7 @@
 // Tracks which section is currently selected/hovered for UI state
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";
-import { useSections } from "../Sections/SectionsContext";
+import { useSections } from "./SectionsContext";
 import type { Section } from "../types";
 
 type SelectionContextValue = {

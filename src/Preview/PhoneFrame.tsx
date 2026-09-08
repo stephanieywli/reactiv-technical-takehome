@@ -1,6 +1,6 @@
 import { IconWifi, IconBattery2 } from "@tabler/icons-react";
 import type { ReactNode } from "react";
-import { useIsMobile } from "../lib/useIsMobile";
+import { useIsMobile } from "../lib/hooks/useIsMobile";
 
 export const PhoneFrame = ({ children }: { children: ReactNode }) => {
   const isMobile = useIsMobile();

@@ -1,9 +1,9 @@
 import { IconLayoutGrid, IconChevronUp } from "@tabler/icons-react";
 import { NavHeader } from "../NavHeader";
 import { ScreenLayoutBody } from "./ScreenLayoutBody";
-import { useSections } from "../Sections/SectionsContext";
-import { useSelection } from "../Selection/SectionSelectionContext";
-import { useIsMobile } from "../lib/useIsMobile";
+import { useSections } from "../contexts/SectionsContext";
+import { useSelection } from "../contexts/SectionSelectionContext";
+import { useIsMobile } from "../lib/hooks/useIsMobile";
 
 export const LayoutEditorNav = () => {
   const { sections, addSection, removeSection, moveSection, toggleVisibility } =

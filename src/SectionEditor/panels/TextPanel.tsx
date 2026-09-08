@@ -1,7 +1,7 @@
 import type { TextSection } from "../../types";
 import { ColourInput } from "../ColourInput";
 import { LabeledTextInput } from "../LabeledTextInput";
-import { useSaveFeedback } from "../../Toast/SaveFeedbackContext";
+import { useSaveFeedback } from "../../contexts/SaveFeedbackContext";
 
 export const TextPanel = ({
   section,

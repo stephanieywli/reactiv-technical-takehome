@@ -1,8 +1,8 @@
 import useEmblaCarousel from "embla-carousel-react";
 import type { CarouselSection } from "../types";
-import { useCarouselPagination } from "../lib/useCarouselPagination";
+import { useCarouselPagination } from "../lib/hooks/useCarouselPagination";
 import { PaginationDot } from "./PaginationDot";
-import { useIsMobile } from "../lib/useIsMobile";
+import { useIsMobile } from "../lib/hooks/useIsMobile";
 
 const aspectClass: Record<CarouselSection["aspect"], string> = {
   landscape: "aspect-video",

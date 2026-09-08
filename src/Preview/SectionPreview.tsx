@@ -3,9 +3,9 @@ import type { Section } from "../types";
 import { CarouselPreview } from "./CarouselPreview";
 import { TextPreview } from "./TextPreview";
 import { CTAPreview } from "./CTAPreview";
-import { useSelection } from "../Selection/SectionSelectionContext";
-import { useSections } from "../Sections/SectionsContext";
-import { useIsMobile } from "../lib/useIsMobile";
+import { useSelection } from "../contexts/SectionSelectionContext";
+import { useSections } from "../contexts/SectionsContext";
+import { useIsMobile } from "../lib/hooks/useIsMobile";
 
 export const SectionPreview = ({ section }: { section: Section }) => {
   const { selectedId, hoveredId, selectSection, setHoveredId } = useSelection();

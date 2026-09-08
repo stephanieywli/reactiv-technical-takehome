@@ -6,7 +6,7 @@ import {
   IconEyeOff,
   IconPencil,
 } from "@tabler/icons-react";
-import { useIsMobile } from "../lib/useIsMobile";
+import { useIsMobile } from "../lib/hooks/useIsMobile";
 
 export const SectionListItem = ({
   index,

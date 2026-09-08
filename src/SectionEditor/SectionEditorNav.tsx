@@ -5,9 +5,9 @@ import {
 } from "@tabler/icons-react";
 import { NavHeader } from "../NavHeader";
 import { SectionEditorBody } from "./SectionEditorBody";
-import { useSelection } from "../Selection/SectionSelectionContext";
-import { useSections } from "../Sections/SectionsContext";
-import { useIsMobile } from "../lib/useIsMobile";
+import { useSelection } from "../contexts/SectionSelectionContext";
+import { useSections } from "../contexts/SectionsContext";
+import { useIsMobile } from "../lib/hooks/useIsMobile";
 
 export const SectionEditorNav = () => {
   const {

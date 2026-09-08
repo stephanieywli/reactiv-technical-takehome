@@ -10,7 +10,7 @@ import {
 import { IconButtonBlock } from "../../IconButtonBlock";
 import { isValidUrl, normalizeUrl } from "../../lib/isValidUrl";
 import { checkImageLoads } from "../../lib/checkImageLoads";
-import { useSaveFeedback } from "../../Toast/SaveFeedbackContext";
+import { useSaveFeedback } from "../../contexts/SaveFeedbackContext";
 import type { CarouselAspect, CarouselSection } from "../../types";
 
 export const CarouselPanel = ({

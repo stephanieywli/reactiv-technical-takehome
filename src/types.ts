@@ -29,7 +29,3 @@ export type CTASection = {
 };
 
 export type Section = CarouselSection | TextSection | CTASection;
-
-export type ScreenConfig = {
-  sections: Section[];
-};

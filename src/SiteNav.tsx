@@ -5,8 +5,8 @@ import {
   IconFileExport,
 } from "@tabler/icons-react";
 import { Logo } from "./assets/Logo";
-import { useSections } from "./Sections/SectionsContext";
-import { useToast } from "./Toast/ToastContext";
+import { useSections } from "./contexts/SectionsContext";
+import { useToast } from "./contexts/ToastContext";
 import { exportJson, importJson } from "./lib/jsonTransfer";
 import { SaveFeedbackPill } from "./SaveFeedbackPill";
 

@@ -1,6 +1,6 @@
 // Text block preview
 import type { TextSection } from "../types";
-import { useSaveFeedback } from "../Toast/SaveFeedbackContext";
+import { useSaveFeedback } from "../contexts/SaveFeedbackContext";
 
 export const TextPreview = ({
   section,

@@ -1,7 +1,7 @@
 import { useRef } from "react";
-import { useSections } from "../Sections/SectionsContext";
-import { useSelection } from "../Selection/SectionSelectionContext";
-import { useIsMobile } from "../lib/useIsMobile";
+import { useSections } from "../contexts/SectionsContext";
+import { useSelection } from "../contexts/SectionSelectionContext";
+import { useIsMobile } from "../lib/hooks/useIsMobile";
 import { PhoneFrame } from "./PhoneFrame";
 import { SectionPreview } from "./SectionPreview";
 
