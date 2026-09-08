@@ -5,6 +5,7 @@ export type CarouselSection = {
   type: "carousel";
   images: string[];
   aspect: CarouselAspect;
+  hidden?: boolean;
 };
 
 export type TextSection = {
@@ -14,6 +15,7 @@ export type TextSection = {
   description: string;
   titleColor: string;
   descriptionColor: string;
+  hidden?: boolean;
 };
 
 export type CTASection = {
@@ -23,6 +25,7 @@ export type CTASection = {
   link: string;
   buttonColor: string;
   labelColor: string;
+  hidden?: boolean;
 };
 
 export type Section = CarouselSection | TextSection | CTASection;

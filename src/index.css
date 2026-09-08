@@ -22,6 +22,9 @@
   body {
     @apply bg-brand-beige-50;
   }
+  button:not(:disabled) {
+    cursor: pointer;
+  }
 }
 
 @theme {

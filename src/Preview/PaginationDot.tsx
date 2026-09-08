@@ -12,7 +12,7 @@ export const PaginationDot = ({
       type="button"
       onClick={onClick}
       aria-label={label}
-      className={`w-1 h-1 rounded-full ${isActive ? "bg-white" : "bg-white/50"}`}
+      className={`w-1.5 h-1.5 rounded-full ${isActive ? "bg-white" : "bg-white/50"}`}
     />
   );
 };
