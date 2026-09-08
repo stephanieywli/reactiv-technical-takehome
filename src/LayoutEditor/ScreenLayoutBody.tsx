@@ -11,17 +11,20 @@ import type { Section } from "../types";
 const sectionLabel: Record<Section["type"], string> = {
   carousel: "Image Carousel",
   text: "Text Block",
-  cta: "CTA Button",
+  cta: "Button",
 };
 
 const sectionSubtitle = (section: Section): string => {
   switch (section.type) {
     case "carousel":
       return `${section.aspect[0].toUpperCase()}${section.aspect.slice(1)} · ${section.images.length} images`;
-    case "text":
-      return `${section.title} · ${section.description}`;
+    case "text": {
+      const title = section.title.trim() || "Enter a title";
+      const description = section.description.trim() || "Enter a description";
+      return `${title} · ${description}`;
+    }
     case "cta":
-      return section.label;
+      return section.label.trim() || "Enter a label";
   }
 };
 

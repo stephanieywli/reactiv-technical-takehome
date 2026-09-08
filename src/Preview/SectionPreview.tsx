@@ -30,7 +30,9 @@ export const SectionPreview = ({ section }: { section: Section }) => {
         isDimmed && !isMobile ? "opacity-50" : "opacity-100"
       }`}
     >
-      {section.type === "carousel" && <CarouselPreview section={section} />}
+      {section.type === "carousel" && (
+        <CarouselPreview section={section} isSelected={isSelected} />
+      )}
       {section.type === "text" && (
         <TextPreview
           section={section}

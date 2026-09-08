@@ -6,7 +6,7 @@ import type { Section } from "../types";
 const panelLabel: Record<Section["type"], string> = {
   carousel: "Carousel",
   text: "Text",
-  cta: "CTA",
+  cta: "Button",
 };
 
 export const SectionEditorBody = ({

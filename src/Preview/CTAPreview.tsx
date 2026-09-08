@@ -1,5 +1,6 @@
 import type { CTASection } from "../types";
 import { useSaveFeedback } from "../Toast/SaveFeedbackContext";
+import { isValidUrl } from "../lib/isValidUrl";
 
 export const CTAPreview = ({
   section,
@@ -15,6 +16,12 @@ export const CTAPreview = ({
   return (
     <button
       type="button"
+      onClick={(e) => {
+        if (!isSelected) return;
+        if (!section.link || !isValidUrl(section.link)) return;
+        e.stopPropagation();
+        window.open(section.link, "_blank", "noopener,noreferrer"); // open link if CTA section is selected
+      }}
       className="w-full py-1.5 px-5 rounded-full font-bold text-sm cursor-pointer"
       style={{
         backgroundColor: section.buttonColor,
@@ -25,6 +32,7 @@ export const CTAPreview = ({
         contentEditable={isSelected}
         suppressContentEditableWarning
         data-placeholder="Enter button label"
+        onClick={isSelected ? (e) => e.stopPropagation() : undefined}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             e.preventDefault();

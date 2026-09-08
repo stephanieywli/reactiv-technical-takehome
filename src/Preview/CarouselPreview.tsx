@@ -10,16 +10,27 @@ const aspectClass: Record<CarouselSection["aspect"], string> = {
   square: "aspect-square",
 };
 
-export const CarouselPreview = ({ section }: { section: CarouselSection }) => {
+export const CarouselPreview = ({
+  section,
+  isSelected,
+}: {
+  section: CarouselSection;
+  isSelected: boolean;
+}) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false });
   const { currentIndex, scrollSnaps, scrollToSnap } =
     useCarouselPagination(emblaApi);
   const isMobile = useIsMobile();
 
+  // carousel needs additional indication that it's selected
+  const selectionClass = isSelected
+    ? "border-brand-green-500 ring-1 ring-brand-green-200"
+    : "border-brand-gray-100";
+
   if (section.images.length === 0) {
     return (
       <div
-        className={`rounded-2xl overflow-hidden bg-brand-gray-50 border border-brand-gray-100 flex items-center justify-center text-brand-gray-300 text-xs ${aspectClass[section.aspect]}`}
+        className={`rounded-2xl overflow-hidden bg-brand-gray-50 border flex items-center justify-center text-brand-gray-300 text-xs transition-colors ${selectionClass} ${aspectClass[section.aspect]}`}
       >
         {isMobile
           ? "Edit the carousel to insert an image"
@@ -29,7 +40,9 @@ export const CarouselPreview = ({ section }: { section: CarouselSection }) => {
   }
 
   return (
-    <div className="relative rounded-2xl overflow-hidden border bg-brand-gray-100 border-brand-gray-100">
+    <div
+      className={`relative rounded-2xl overflow-hidden border bg-brand-gray-100 transition-colors ${selectionClass}`}
+    >
       <div
         className="overflow-hidden touch-pan-y touch-pinch-zoom"
         ref={emblaRef}
