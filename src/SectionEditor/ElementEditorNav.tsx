@@ -2,19 +2,11 @@ import {
   IconAdjustmentsHorizontal,
   IconChevronDown,
 } from "@tabler/icons-react";
-import { CarouselPanel } from "./panels/CarouselPanel";
-import { TextPanel } from "./panels/TextPanel";
-import { CTAPanel } from "./panels/CTAPanel";
+import { NavHeader } from "../NavHeader";
+import { SectionEditorBody } from "./SectionEditorBody";
 import { useSelection } from "../Selection/SectionSelectionContext";
 import { useSections } from "../Sections/SectionsContext";
 import { useIsMobile } from "../useIsMobile";
-import type { Section } from "../types";
-
-const panelLabel: Record<Section["type"], string> = {
-  carousel: "Carousel",
-  text: "Text",
-  cta: "CTA",
-};
 
 export const SectionEditorNav = () => {
   const { selectedSection, clearSelection } = useSelection();
@@ -23,52 +15,21 @@ export const SectionEditorNav = () => {
 
   if (!selectedSection) return null;
 
-  // Header: Nav title
   const header = (
-    <div
-      className={`flex flex-row gap-1.5 items-center shrink-0 ${
-        isMobile ? "p-4 cursor-pointer" : ""
-      }`}
-      onClick={isMobile ? clearSelection : undefined}
-    >
-      <IconAdjustmentsHorizontal
-        size={25}
-        className="bg-brand-green-200 text-brand-gray-700 p-0.5 rounded-md"
-      />
-      <h6 className="text-sm text-brand-gray-400 font-semibold flex-1">
-        Section Editor
-      </h6>
-      {isMobile && (
-        <IconChevronDown size={18} className="text-brand-gray-400" />
-      )}
-    </div>
+    <NavHeader
+      icon={IconAdjustmentsHorizontal}
+      title="Section Editor"
+      isMobile={isMobile}
+      onMobileClick={clearSelection}
+      chevron={<IconChevronDown size={18} className="text-brand-gray-400" />}
+    />
   );
 
-  // Body: Panel label and component
   const body = (
-    <div className="flex flex-col gap-2">
-      <span className="text-[10px] font-bold uppercase tracking-wider text-brand-gray-300">
-        {panelLabel[selectedSection.type]}
-      </span>
-      {selectedSection.type === "carousel" && (
-        <CarouselPanel
-          section={selectedSection}
-          onUpdate={(patch) => editSection(selectedSection.id, patch)}
-        />
-      )}
-      {selectedSection.type === "text" && (
-        <TextPanel
-          section={selectedSection}
-          onUpdate={(patch) => editSection(selectedSection.id, patch)}
-        />
-      )}
-      {selectedSection.type === "cta" && (
-        <CTAPanel
-          section={selectedSection}
-          onUpdate={(patch) => editSection(selectedSection.id, patch)}
-        />
-      )}
-    </div>
+    <SectionEditorBody
+      section={selectedSection}
+      onUpdate={(patch) => editSection(selectedSection.id, patch)}
+    />
   );
 
   if (isMobile) {

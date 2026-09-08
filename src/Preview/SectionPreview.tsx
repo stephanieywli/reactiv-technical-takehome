@@ -1,0 +1,47 @@
+// Section preview wrapper
+import type { Section } from "../types";
+import { CarouselPreview } from "./CarouselPreview";
+import { TextPreview } from "./TextPreview";
+import { CTAPreview } from "./CTAPreview";
+import { useSelection } from "../Selection/SectionSelectionContext";
+import { useSections } from "../Sections/SectionsContext";
+
+export const SectionPreview = ({ section }: { section: Section }) => {
+  const { selectedId, hoveredId, selectSection, setHoveredId } = useSelection();
+  const { editSection } = useSections();
+  const isSelected = selectedId === section.id;
+
+  // Set focus to hovered > selected section; dim sections not currently in focus
+  const focusedId = hoveredId ?? selectedId;
+  const isDimmed = focusedId !== null && focusedId !== section.id;
+
+  return (
+    <div
+      onClick={(e) => {
+        e.stopPropagation(); // stops deselection from ScreenCanvas
+        if (!isSelected) selectSection(section.id); // select section on click in preview; deselect from nav/canvas
+      }}
+      onMouseEnter={() => setHoveredId(section.id)}
+      onMouseLeave={() => setHoveredId(null)}
+      className={`cursor-pointer transition-opacity duration-200 ${
+        isDimmed ? "opacity-50" : "opacity-100"
+      }`}
+    >
+      {section.type === "carousel" && <CarouselPreview section={section} />}
+      {section.type === "text" && (
+        <TextPreview
+          section={section}
+          isSelected={isSelected}
+          onUpdate={(patch) => editSection(section.id, patch)}
+        />
+      )}
+      {section.type === "cta" && (
+        <CTAPreview
+          section={section}
+          isSelected={isSelected}
+          onUpdate={(patch) => editSection(section.id, patch)}
+        />
+      )}
+    </div>
+  );
+};

@@ -1,7 +1,21 @@
 import { IconWifi, IconBattery2 } from "@tabler/icons-react";
 import type { ReactNode } from "react";
+import { useIsMobile } from "../useIsMobile";
 
 export const PhoneFrame = ({ children }: { children: ReactNode }) => {
+  const isMobile = useIsMobile();
+
+  // display the content full-bleed (no phone UI) on mobile
+  if (isMobile) {
+    return (
+      <div className="w-full h-full bg-white flex flex-col relative">
+        <div className="flex-1 overflow-y-auto no-scrollbar px-4 pt-3 pb-10 space-y-4">
+          {children}
+        </div>
+      </div>
+    );
+  }
+
   return (
     // Outer frame
     <div className="aspect-9/19.5 h-[85vh] max-h-211 bg-black rounded-[52px] p-2.5 shadow-2xl shrink-0">
@@ -17,8 +31,7 @@ export const PhoneFrame = ({ children }: { children: ReactNode }) => {
           </div>
         </div>
 
-        {/** Screen content (y-scrollable children) */}
-        <div className="flex-1 overflow-y-auto px-4 py-3 space-y-4">
+        <div className="flex-1 overflow-y-auto no-scrollbar px-4 pt-3 pb-10 space-y-4">
           {children}
         </div>
       </div>

@@ -17,9 +17,9 @@ export const CarouselPreview = ({ section }: { section: CarouselSection }) => {
   if (section.images.length === 0) {
     return (
       <div
-        className={`rounded-2xl overflow-hidden bg-brand-gray-100 border border-brand-gray-200 flex items-center justify-center text-brand-gray-400 text-xs ${aspectClass[section.aspect]}`}
+        className={`rounded-2xl overflow-hidden bg-brand-gray-50 border border-brand-gray-100 flex items-center justify-center text-brand-gray-300 text-xs ${aspectClass[section.aspect]}`}
       >
-        Insert image
+        Click to insert an image
       </div>
     );
   }
