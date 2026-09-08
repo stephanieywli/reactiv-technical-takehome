@@ -1,4 +1,4 @@
-// Tracks which section is currently selected/hovered for UI state
+// Tracks which section is currently selected/hovered for UI state, as well as expanded state of mobile nav panels
 import { createContext, useContext, useMemo, useState } from "react";
 import type { ReactNode } from "react";
 import { useSections } from "./SectionsContext";

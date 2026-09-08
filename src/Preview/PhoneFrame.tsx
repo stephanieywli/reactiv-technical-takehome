@@ -8,10 +8,8 @@ export const PhoneFrame = ({ children }: { children: ReactNode }) => {
   // display the content full-bleed (no phone UI) on mobile
   if (isMobile) {
     return (
-      <div className="w-full h-full bg-white flex flex-col relative">
-        <div className="flex-1 overflow-y-auto no-scrollbar px-4 pt-3 pb-10 space-y-4">
-          {children}
-        </div>
+      <div className="w-full bg-white flex flex-col px-4 pt-3 pb-10 space-y-4">
+        {children}
       </div>
     );
   }
