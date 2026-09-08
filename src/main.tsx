@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import { SiteNav } from "./SiteNav.tsx";
 import { LayoutEditorNav } from "./LayoutEditor/LayoutEditorNav.tsx";
-import { SectionEditorNav } from "./SectionEditor/ElementEditorNav.tsx";
+import { SectionEditorNav } from "./SectionEditor/SectionEditorNav.tsx";
 import { ScreenCanvas } from "./Preview/ScreenCanvas.tsx";
 import { ToastProvider } from "./contexts/ToastContext.tsx";
 import { SaveFeedbackProvider } from "./contexts/SaveFeedbackContext.tsx";

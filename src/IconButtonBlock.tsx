@@ -12,9 +12,11 @@ export const IconButtonBlock = ({
   isActive?: boolean;
 }) => {
   return (
-    <div
+    <button
+      type="button"
       onClick={onClick}
-      className={`flex flex-col gap-1 items-center border transition-all rounded-lg px-3 py-1 cursor-pointer ${
+      aria-pressed={isActive}
+      className={`flex flex-col gap-1 items-center border transition-all rounded-lg px-3 py-1 cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-brand-green-300 ${
         isActive
           ? "border-brand-green-600 bg-brand-green-600 shadow-sm"
           : "border-brand-gray-200 bg-white hover:border-brand-green-400 hover:bg-brand-green-50"
@@ -28,6 +30,6 @@ export const IconButtonBlock = ({
       <p className={`text-xs font-medium ${isActive ? "text-white" : "text-brand-gray-700"}`}>
         {label}
       </p>
-    </div>
+    </button>
   );
 };

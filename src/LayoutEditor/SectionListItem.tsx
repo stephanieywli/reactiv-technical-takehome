@@ -34,8 +34,17 @@ export const SectionListItem = ({
   const isMobile = useIsMobile();
   return (
     <li
+      role="button"
+      tabIndex={0}
       onClick={onClick}
-      className={`flex flex-row items-center justify-between p-1.5 pr-2 border rounded-lg bg-white transition-all cursor-pointer ${
+      onKeyDown={(e) => {
+        if (e.target !== e.currentTarget) return;
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onClick();
+        }
+      }}
+      className={`flex flex-row items-center justify-between p-1.5 pr-2 border rounded-lg bg-white transition-all cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-brand-green-300 ${
         isSelected
           ? "border-brand-green-500 ring-1 ring-brand-green-200"
           : "border-brand-gray-200 hover:border-brand-green-400"
