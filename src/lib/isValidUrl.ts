@@ -6,10 +6,14 @@ export const normalizeUrl = (value: string): string => {
   return `https://${trimmed}`;
 };
 
+const isValidHostname = (hostname: string): boolean =>
+  /^(?!-)[a-z0-9-]{1,63}(?<!-)(\.(?!-)[a-z0-9-]{1,63}(?<!-))*$/i.test(hostname);
+
 // Validate URLs, throw errors if interface fails
 export const isValidUrl = (value: string): boolean => {
   try {
-    new URL(normalizeUrl(value));
+    const url = new URL(normalizeUrl(value));
+    if (url.hostname && !isValidHostname(url.hostname)) return false;
     return true;
   } catch {
     return false;
