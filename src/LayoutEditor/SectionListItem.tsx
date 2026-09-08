@@ -6,7 +6,7 @@ import {
   IconEyeOff,
   IconPencil,
 } from "@tabler/icons-react";
-import { useIsMobile } from "../lib/hooks/useIsMobile";
+import { useIsBelowBreakpoint } from "../lib/hooks/useIsBelowBreakpoint";
 
 export const SectionListItem = ({
   index,
@@ -31,7 +31,7 @@ export const SectionListItem = ({
   onToggleVisibility: () => void;
   onDelete: () => void;
 }) => {
-  const isMobile = useIsMobile();
+  const isMobile = useIsBelowBreakpoint();
   return (
     <li
       role="button"

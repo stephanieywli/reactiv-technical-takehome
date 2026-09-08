@@ -1,9 +1,9 @@
 import { IconWifi, IconBattery2 } from "@tabler/icons-react";
 import type { ReactNode } from "react";
-import { useIsMobile } from "../lib/hooks/useIsMobile";
+import { useIsBelowBreakpoint } from "../lib/hooks/useIsBelowBreakpoint";
 
 export const PhoneFrame = ({ children }: { children: ReactNode }) => {
-  const isMobile = useIsMobile();
+  const isMobile = useIsBelowBreakpoint();
 
   // display the content full-bleed (no phone UI) on mobile
   if (isMobile) {
@@ -16,7 +16,7 @@ export const PhoneFrame = ({ children }: { children: ReactNode }) => {
 
   return (
     // Outer frame
-    <div className="aspect-9/19.5 h-[85vh] max-h-211 bg-black rounded-[52px] p-2.5 shadow-2xl shrink-0">
+    <div className="relative aspect-9/19.5 phone-frame-size h-auto bg-black rounded-[52px] p-2.5 shadow-2xl shrink-0">
       {/** Inner Screen */}
       <div className="w-full h-full bg-white rounded-[44px] overflow-hidden flex flex-col relative">
         {/** Upper Status bar */}

@@ -2,7 +2,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import type { CarouselSection } from "../types";
 import { useCarouselPagination } from "../lib/hooks/useCarouselPagination";
 import { PaginationDot } from "./PaginationDot";
-import { useIsMobile } from "../lib/hooks/useIsMobile";
+import { useIsBelowBreakpoint } from "../lib/hooks/useIsBelowBreakpoint";
 
 const aspectClass: Record<CarouselSection["aspect"], string> = {
   landscape: "aspect-video",
@@ -20,7 +20,7 @@ export const CarouselPreview = ({
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false });
   const { currentIndex, scrollSnaps, scrollToSnap } =
     useCarouselPagination(emblaApi);
-  const isMobile = useIsMobile();
+  const isMobile = useIsBelowBreakpoint();
 
   // carousel needs additional indication that it's selected
   const selectionClass = isSelected

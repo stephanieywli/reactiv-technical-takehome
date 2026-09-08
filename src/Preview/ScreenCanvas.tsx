@@ -1,7 +1,11 @@
 import { useRef } from "react";
 import { useSections } from "../contexts/SectionsContext";
 import { useSelection } from "../contexts/SectionSelectionContext";
-import { useIsMobile } from "../lib/hooks/useIsMobile";
+import {
+  useIsBelowBreakpoint,
+  COMPACT_BREAKPOINT,
+  WIDE_BREAKPOINT,
+} from "../lib/hooks/useIsBelowBreakpoint";
 import { PhoneFrame } from "./PhoneFrame";
 import { SectionPreview } from "./SectionPreview";
 
@@ -13,7 +17,9 @@ export const ScreenCanvas = () => {
     setMobileExpanded,
     setSectionEditorExpanded,
   } = useSelection();
-  const isMobile = useIsMobile();
+  const isMobile = useIsBelowBreakpoint();
+  const isCompact = useIsBelowBreakpoint(COMPACT_BREAKPOINT) && !isMobile;
+  const isWideDesktop = !useIsBelowBreakpoint(WIDE_BREAKPOINT);
   const visibleSections = sections.filter((section) => !section.hidden);
 
   const wasEditingRef = useRef(false);
@@ -72,17 +78,32 @@ export const ScreenCanvas = () => {
     );
   }
 
+  if (isCompact) {
+    // adjust to 1 side panel for compact screens
+    return (
+      <div
+        onMouseDown={handleMouseDown}
+        onClick={handleClick}
+        className="fixed left-112 right-0 top-12 bottom-0 bg-brand-beige-50 flex items-center justify-center overflow-hidden bg-dot-grid transition-all duration-200"
+      >
+        <PhoneFrame>{content}</PhoneFrame>
+      </div>
+    );
+  }
+
   return (
     <div
       onMouseDown={handleMouseDown}
       onClick={handleClick}
-      className={`fixed left-0 right-0 top-0 h-screen bg-brand-beige-50 flex items-center justify-center overflow-hidden bg-dot-grid transition-all duration-200 ${
-        selectedSection ? "left-80 pr-100" : "left-112 pr-0"
+      className={`fixed left-0 right-0 top-12 bottom-0 bg-brand-beige-50 flex items-center justify-center overflow-hidden bg-dot-grid transition-all duration-200 ${
+        selectedSection
+          ? isWideDesktop
+            ? "left-112 pr-116"
+            : "left-80 pr-100"
+          : "left-112 pr-0"
       }`}
     >
-      <div className="relative w-auto h-auto">
-        <PhoneFrame>{content}</PhoneFrame>
-      </div>
+      <PhoneFrame>{content}</PhoneFrame>
     </div>
   );
 };

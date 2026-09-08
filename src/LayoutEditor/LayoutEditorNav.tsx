@@ -3,20 +3,26 @@ import { NavHeader } from "../NavHeader";
 import { ScreenLayoutBody } from "./ScreenLayoutBody";
 import { useSections } from "../contexts/SectionsContext";
 import { useSelection } from "../contexts/SectionSelectionContext";
-import { useIsMobile } from "../lib/hooks/useIsMobile";
+import {
+  useIsBelowBreakpoint,
+  COMPACT_BREAKPOINT,
+  WIDE_BREAKPOINT,
+} from "../lib/hooks/useIsBelowBreakpoint";
 
 export const LayoutEditorNav = () => {
   const { sections, addSection, removeSection, moveSection, toggleVisibility } =
     useSections();
   const { selectedId, selectSection, mobileExpanded, setMobileExpanded } =
     useSelection();
-  const isMobile = useIsMobile();
+  const isMobile = useIsBelowBreakpoint();
+  const isCompact = useIsBelowBreakpoint(COMPACT_BREAKPOINT) && !isMobile;
+  const isWideDesktop = !useIsBelowBreakpoint(WIDE_BREAKPOINT);
 
   // wider nav width if no sections are selected
   const isWide = !selectedId;
 
-  // return nothing if a section is not selected on mobile
-  if (isMobile && selectedId) return null;
+  // return nothing if a section is not selected on compact screens
+  if ((isMobile || isCompact) && selectedId) return null;
 
   const header = (
     <NavHeader
@@ -69,7 +75,7 @@ export const LayoutEditorNav = () => {
   return (
     <nav
       className={`bg-white flex flex-col fixed left-0 top-0 z-1 gap-4 h-screen border-r-2 border-brand-gray-50 pt-15 p-4 overflow-y-auto transition-all duration-200 ${
-        isWide ? "w-md" : "w-xs"
+        isWide || isWideDesktop ? "w-md" : "w-xs"
       }`}
     >
       {header}

@@ -68,6 +68,11 @@
   --color-brand-gray-950: #131211;
 }
 
+@utility phone-frame-size {
+  width: 100%;
+  max-width: min(40vh, 37rem);
+}
+
 @utility bg-dot-grid {
   background-image: radial-gradient(
     var(--color-brand-gray-300) 1.2px,
