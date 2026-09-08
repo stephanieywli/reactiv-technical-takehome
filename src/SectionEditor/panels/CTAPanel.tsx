@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { isValidUrl } from "../../Sections/validateSections";
-import { useSavingIndicator } from "../../Toast/SavingIndicatorContext";
+import { useSaveFeedback } from "../../Toast/SaveFeedbackContext";
 import { ColourInput } from "../ColourInput";
 import { LabeledTextInput } from "../LabeledTextInput";
 import type { CTASection } from "../../types";
@@ -13,7 +13,7 @@ export const CTAPanel = ({
   onUpdate: (patch: Partial<CTASection>) => void;
 }) => {
   const [urlError, setUrlError] = useState<string | null>(null);
-  const { triggerSaving } = useSavingIndicator();
+  const { triggerSaving } = useSaveFeedback();
 
   const validateLink = (value: string) => {
     const trimmed = value.trim();

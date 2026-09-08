@@ -10,6 +10,7 @@ import {
 import { IconButtonBlock } from "../../IconButtonBlock";
 import { isValidUrl } from "../../Sections/validateSections";
 import { checkImageLoads } from "../checkImageLoads";
+import { useSaveFeedback } from "../../Toast/SaveFeedbackContext";
 import type { CarouselAspect, CarouselSection } from "../../types";
 
 export const CarouselPanel = ({
@@ -22,6 +23,7 @@ export const CarouselPanel = ({
   const [newUrl, setNewUrl] = useState("");
   const [urlError, setUrlError] = useState<string | null>(null);
   const [validating, setValidating] = useState(false);
+  const { triggerSaving } = useSaveFeedback();
 
   // Add new img to carousel
   const addImage = async () => {
@@ -50,15 +52,20 @@ export const CarouselPanel = ({
     onUpdate({ images: [...section.images, url] });
     setNewUrl("");
     setUrlError(null);
+    triggerSaving();
   };
 
   // Remove img from carousel
   const removeImage = (index: number) => {
     onUpdate({ images: section.images.filter((_, i) => i !== index) });
+    triggerSaving();
   };
 
   // Set aspect ratio of carousel
-  const setAspect = (aspect: CarouselAspect) => onUpdate({ aspect });
+  const setAspect = (aspect: CarouselAspect) => {
+    onUpdate({ aspect });
+    triggerSaving();
+  };
 
   return (
     <div className="flex flex-col gap-4">
@@ -112,7 +119,7 @@ export const CarouselPanel = ({
               <button
                 type="button"
                 onClick={() => removeImage(i)}
-                className="text-brand-gray-400 hover:text-red-500 shrink-0"
+                className="text-brand-gray-400 hover:text-red-600 shrink-0"
               >
                 <IconTrash size={16} />
               </button>
