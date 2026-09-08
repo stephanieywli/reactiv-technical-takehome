@@ -40,6 +40,7 @@ export const SaveFeedbackProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useSaveFeedback = () => {
   const ctx = useContext(SaveFeedbackContext);
   if (!ctx) {
