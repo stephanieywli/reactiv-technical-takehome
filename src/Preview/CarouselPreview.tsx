@@ -2,6 +2,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import type { CarouselSection } from "../types";
 import { useCarouselPagination } from "../lib/useCarouselPagination";
 import { PaginationDot } from "./PaginationDot";
+import { useIsMobile } from "../lib/useIsMobile";
 
 const aspectClass: Record<CarouselSection["aspect"], string> = {
   landscape: "aspect-video",
@@ -13,13 +14,16 @@ export const CarouselPreview = ({ section }: { section: CarouselSection }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false });
   const { currentIndex, scrollSnaps, scrollToSnap } =
     useCarouselPagination(emblaApi);
+  const isMobile = useIsMobile();
 
   if (section.images.length === 0) {
     return (
       <div
         className={`rounded-2xl overflow-hidden bg-brand-gray-50 border border-brand-gray-100 flex items-center justify-center text-brand-gray-300 text-xs ${aspectClass[section.aspect]}`}
       >
-        Click to insert an image
+        {isMobile
+          ? "Edit the carousel to insert an image"
+          : "Click to insert an image"}
       </div>
     );
   }

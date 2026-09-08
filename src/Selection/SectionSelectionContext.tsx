@@ -11,6 +11,10 @@ type SelectionContextValue = {
   clearSelection: () => void;
   hoveredId: string | null;
   setHoveredId: (id: string | null) => void;
+  mobileExpanded: boolean;
+  setMobileExpanded: (expanded: boolean) => void;
+  sectionEditorExpanded: boolean;
+  setSectionEditorExpanded: (expanded: boolean) => void;
 };
 
 // Create context for section selection/hover
@@ -20,6 +24,8 @@ export const SelectionProvider = ({ children }: { children: ReactNode }) => {
   const { sections } = useSections();
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [mobileExpanded, setMobileExpanded] = useState(false);
+  const [sectionEditorExpanded, setSectionEditorExpanded] = useState(true);
 
   // return section object if it exists in the sections array; else null
   // only run if sections array or selected section change
@@ -36,8 +42,10 @@ export const SelectionProvider = ({ children }: { children: ReactNode }) => {
   }, [sections, selectedId]);
 
   // select a section; if the section is already selected, deselect it
+  // expand the section editor nav for mobile
   const selectSection = (id: string) => {
     setSelectedId((current) => (current === id ? null : id));
+    setSectionEditorExpanded(true);
   };
 
   // clear selection (i.e. on deselect)
@@ -52,6 +60,10 @@ export const SelectionProvider = ({ children }: { children: ReactNode }) => {
         clearSelection,
         hoveredId,
         setHoveredId,
+        mobileExpanded,
+        setMobileExpanded,
+        sectionEditorExpanded,
+        setSectionEditorExpanded,
       }}
     >
       {children}

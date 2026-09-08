@@ -5,10 +5,12 @@ import { TextPreview } from "./TextPreview";
 import { CTAPreview } from "./CTAPreview";
 import { useSelection } from "../Selection/SectionSelectionContext";
 import { useSections } from "../Sections/SectionsContext";
+import { useIsMobile } from "../lib/useIsMobile";
 
 export const SectionPreview = ({ section }: { section: Section }) => {
   const { selectedId, hoveredId, selectSection, setHoveredId } = useSelection();
   const { editSection } = useSections();
+  const isMobile = useIsMobile();
   const isSelected = selectedId === section.id;
 
   // Set focus to hovered > selected section; dim sections not currently in focus
@@ -19,12 +21,13 @@ export const SectionPreview = ({ section }: { section: Section }) => {
     <div
       onClick={(e) => {
         e.stopPropagation(); // stops deselection from ScreenCanvas
+        if (isMobile) return; // do nothing on mobile
         if (!isSelected) selectSection(section.id); // select section on click in preview; deselect from nav/canvas
       }}
       onMouseEnter={() => setHoveredId(section.id)}
       onMouseLeave={() => setHoveredId(null)}
-      className={`cursor-pointer transition-opacity duration-200 ${
-        isDimmed ? "opacity-50" : "opacity-100"
+      className={`md:cursor-pointer transition-opacity duration-200 ${
+        isDimmed && !isMobile ? "opacity-50" : "opacity-100"
       }`}
     >
       {section.type === "carousel" && <CarouselPreview section={section} />}

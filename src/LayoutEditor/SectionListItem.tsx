@@ -4,7 +4,9 @@ import {
   IconTrash,
   IconEye,
   IconEyeOff,
+  IconPencil,
 } from "@tabler/icons-react";
+import { useIsMobile } from "../lib/useIsMobile";
 
 export const SectionListItem = ({
   index,
@@ -29,6 +31,7 @@ export const SectionListItem = ({
   onToggleVisibility: () => void;
   onDelete: () => void;
 }) => {
+  const isMobile = useIsMobile();
   return (
     <li
       onClick={onClick}
@@ -72,6 +75,12 @@ export const SectionListItem = ({
         </div>
       </div>
       <div className="flex items-center gap-2 shrink-0">
+        {isMobile && (
+          <IconPencil
+            size={16}
+            className="text-brand-gray-400 hover:text-brand-gray-700"
+          />
+        )}
         <button
           type="button"
           onClick={(e) => {
@@ -90,7 +99,7 @@ export const SectionListItem = ({
           }}
           className="text-brand-gray-400 hover:text-red-600"
         >
-            <IconTrash size={18} />
+          <IconTrash size={18} />
         </button>
       </div>
     </li>

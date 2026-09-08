@@ -1,17 +1,16 @@
-import { useState } from "react";
 import { IconLayoutGrid, IconChevronUp } from "@tabler/icons-react";
 import { NavHeader } from "../NavHeader";
 import { ScreenLayoutBody } from "./ScreenLayoutBody";
 import { useSections } from "../Sections/SectionsContext";
 import { useSelection } from "../Selection/SectionSelectionContext";
-import { useIsMobile } from "../useIsMobile";
+import { useIsMobile } from "../lib/useIsMobile";
 
 export const LayoutEditorNav = () => {
   const { sections, addSection, removeSection, moveSection, toggleVisibility } =
     useSections();
-  const { selectedId, selectSection } = useSelection();
+  const { selectedId, selectSection, mobileExpanded, setMobileExpanded } =
+    useSelection();
   const isMobile = useIsMobile();
-  const [mobileExpanded, setMobileExpanded] = useState(false);
 
   // wider nav width if no sections are selected
   const isWide = !selectedId;
@@ -22,9 +21,9 @@ export const LayoutEditorNav = () => {
   const header = (
     <NavHeader
       icon={IconLayoutGrid}
-      title="Screen Layout"
+      title="Layout Editor"
       isMobile={isMobile}
-      onMobileClick={() => setMobileExpanded((v) => !v)}
+      onMobileClick={() => setMobileExpanded(!mobileExpanded)}
       chevron={
         <IconChevronUp
           size={18}
@@ -40,7 +39,10 @@ export const LayoutEditorNav = () => {
     <ScreenLayoutBody
       sections={sections}
       selectedId={selectedId}
-      onAdd={(type) => selectSection(addSection(type))}
+      onAdd={(type) => {
+        const id = addSection(type);
+        if (!isMobile) selectSection(id); // do not auto-select section on mobile
+      }}
       onSelect={selectSection}
       onMove={moveSection}
       onToggleVisibility={toggleVisibility}
