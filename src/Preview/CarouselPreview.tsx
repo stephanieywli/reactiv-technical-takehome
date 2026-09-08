@@ -1,6 +1,6 @@
 import useEmblaCarousel from "embla-carousel-react";
 import type { CarouselSection } from "../types";
-import { useCarouselPagination } from "./useCarouselPagination";
+import { useCarouselPagination } from "../lib/useCarouselPagination";
 import { PaginationDot } from "./PaginationDot";
 
 const aspectClass: Record<CarouselSection["aspect"], string> = {

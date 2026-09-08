@@ -7,7 +7,7 @@ import {
 import { Logo } from "./assets/Logo";
 import { useSections } from "./Sections/SectionsContext";
 import { useToast } from "./Toast/ToastContext";
-import { exportJson, importJson } from "./jsonTransfer";
+import { exportJson, importJson } from "./lib/jsonTransfer";
 import { SaveFeedbackPill } from "./SaveFeedbackPill";
 
 export const SiteNav = () => {

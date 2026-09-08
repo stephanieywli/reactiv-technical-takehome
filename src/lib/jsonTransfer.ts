@@ -1,5 +1,5 @@
-import type { Section } from "./types";
-import { parseImportedSections } from "./Sections/parseJson";
+import type { Section } from "../types";
+import { parseImportedSections } from "./parseJson";
 
 type ToastActions = {
   showError: (message: string) => void;
