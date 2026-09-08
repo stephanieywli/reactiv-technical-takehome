@@ -1,3 +1,4 @@
+// Tracks the list of added sections and all layout actions (add, remove, reorder, edit, hide, and import)
 import { createContext, useCallback, useContext, useState } from "react";
 import type { ReactNode } from "react";
 import type { Section } from "../types";
@@ -7,7 +8,7 @@ type SectionsContextValue = {
   addSection: (type: Section["type"]) => string;
   removeSection: (id: string) => void;
   moveSection: (id: string, direction: "up" | "down") => void;
-  updateSection: <S extends Section>(id: string, patch: Partial<S>) => void;
+  editSection: <S extends Section>(id: string, patch: Partial<S>) => void;
   toggleVisibility: (id: string) => void;
   importSections: (sections: Section[]) => void;
 };
@@ -78,8 +79,8 @@ export const SectionsProvider = ({ children }: { children: ReactNode }) => {
     });
   }, []);
 
-  // update section field
-  const updateSection = useCallback((id: string, update: Partial<Section>) => {
+  // edit section field
+  const editSection = useCallback((id: string, update: Partial<Section>) => {
     setSections((prev) =>
       prev.map((s) => (s.id === id ? ({ ...s, ...update } as Section) : s)),
     );
@@ -104,7 +105,7 @@ export const SectionsProvider = ({ children }: { children: ReactNode }) => {
         addSection,
         removeSection,
         moveSection,
-        updateSection,
+        editSection,
         toggleVisibility,
         importSections,
       }}

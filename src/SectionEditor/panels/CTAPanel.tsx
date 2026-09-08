@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { isValidUrl } from "../../Sections/validateSections";
+import { isValidUrl } from "../../Sections/isValidUrl";
 import { useSaveFeedback } from "../../Toast/SaveFeedbackContext";
 import { ColourInput } from "../ColourInput";
 import { LabeledTextInput } from "../LabeledTextInput";

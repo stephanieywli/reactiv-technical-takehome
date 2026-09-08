@@ -5,7 +5,7 @@ import {
 import { CarouselPanel } from "./panels/CarouselPanel";
 import { TextPanel } from "./panels/TextPanel";
 import { CTAPanel } from "./panels/CTAPanel";
-import { useSelection } from "../Selection/SelectionContext";
+import { useSelection } from "../Selection/SectionSelectionContext";
 import { useSections } from "../Sections/SectionsContext";
 import { useIsMobile } from "../useIsMobile";
 import type { Section } from "../types";
@@ -18,7 +18,7 @@ const panelLabel: Record<Section["type"], string> = {
 
 export const SectionEditorNav = () => {
   const { selectedSection, clearSelection } = useSelection();
-  const { updateSection } = useSections();
+  const { editSection } = useSections();
   const isMobile = useIsMobile();
 
   if (!selectedSection) return null;
@@ -53,19 +53,19 @@ export const SectionEditorNav = () => {
       {selectedSection.type === "carousel" && (
         <CarouselPanel
           section={selectedSection}
-          onUpdate={(patch) => updateSection(selectedSection.id, patch)}
+          onUpdate={(patch) => editSection(selectedSection.id, patch)}
         />
       )}
       {selectedSection.type === "text" && (
         <TextPanel
           section={selectedSection}
-          onUpdate={(patch) => updateSection(selectedSection.id, patch)}
+          onUpdate={(patch) => editSection(selectedSection.id, patch)}
         />
       )}
       {selectedSection.type === "cta" && (
         <CTAPanel
           section={selectedSection}
-          onUpdate={(patch) => updateSection(selectedSection.id, patch)}
+          onUpdate={(patch) => editSection(selectedSection.id, patch)}
         />
       )}
     </div>

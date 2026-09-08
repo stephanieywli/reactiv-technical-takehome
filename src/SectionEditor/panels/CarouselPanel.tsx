@@ -8,7 +8,7 @@ import {
   IconPlus,
 } from "@tabler/icons-react";
 import { IconButtonBlock } from "../../IconButtonBlock";
-import { isValidUrl } from "../../Sections/validateSections";
+import { isValidUrl } from "../../Sections/isValidUrl";
 import { checkImageLoads } from "../checkImageLoads";
 import { useSaveFeedback } from "../../Toast/SaveFeedbackContext";
 import type { CarouselAspect, CarouselSection } from "../../types";
