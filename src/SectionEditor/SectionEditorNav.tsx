@@ -49,7 +49,7 @@ export const SectionEditorNav = () => {
     return (
       <nav
         className={`bg-white flex flex-col fixed bottom-0 left-0 right-0 z-40 rounded-t-2xl border-t border-brand-gray-200 shadow-lg transition-all duration-200 overflow-hidden ${
-          sectionEditorExpanded ? "h-[70vh]" : "h-16"
+          sectionEditorExpanded ? "max-h-[70vh]" : "h-16"
         }`}
       >
         {sectionEditorExpanded && (
@@ -64,7 +64,9 @@ export const SectionEditorNav = () => {
         )}
         {header}
         {sectionEditorExpanded && (
-          <div className="flex-1 overflow-y-auto px-4 pb-4">{body}</div>
+          <div className="flex-1 min-h-0 overflow-y-auto px-4 pb-4">
+            {body}
+          </div>
         )}
       </nav>
     );
