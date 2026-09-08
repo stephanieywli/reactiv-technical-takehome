@@ -51,7 +51,7 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
     <ToastContext.Provider value={{ showError, showSuccess }}>
       {children}
       {toast && (
-        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-brand-gray-200 shadow-lg text-xs font-medium text-brand-gray-700 max-w-xs text-right">
+        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-brand-gray-200 shadow-lg text-xs font-medium text-brand-gray-700 max-w-xs text-start">
           <span
             className={`w-1.5 h-1.5 rounded-full shrink-0 ${dotClass[toast.status]}`}
           />
